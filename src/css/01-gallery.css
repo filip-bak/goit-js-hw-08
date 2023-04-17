@@ -10,6 +10,7 @@
   grid-auto-rows: 240px;
   grid-gap: 12px;
   justify-content: center;
+  list-style: none;
   margin-left: auto;
   margin-right: auto;
 }
