@@ -7,16 +7,24 @@ const messageEl = document.querySelector(`textarea[name="message"]`);
 function handleSubmit(e) {
   e.preventDefault();
   const localData = JSON.parse(localStorage.getItem('feedback-form-state'));
-  const { email, message } = localData;
+  const { email: localEmail, message: localMessage } = localData;
 
-  console.log(localData);
-  console.log(`
-  email: ${email}
-  message: ${message}
-  `);
+  const SubmittedData = {
+    email: localEmail,
+    message: localMessage,
+  };
 
   localData.email = '';
   localData.message = '';
+
+  // ------
+  console.log('local data:', localData);
+  console.log('submitted data:', SubmittedData);
+  console.log(`
+  email: ${localEmail}
+  message: ${localMessage}
+  `);
+  // ------
   localStorage.setItem('feedback-form-state', JSON.stringify(localData));
   feedbackForm.reset();
 }
@@ -37,10 +45,8 @@ function saveValue(e) {
 
 window.addEventListener('load', () => {
   const localData = JSON.parse(localStorage.getItem('feedback-form-state'));
-  if (localData !== null) {
-    emailInput.value = localData.email;
-    messageEl.value = localData.message;
-  }
+  emailInput.value = localData.email;
+  messageEl.value = localData.message;
 });
 feedbackForm.addEventListener('input', throttle(saveValue, 500));
 
