@@ -63,7 +63,6 @@ function openLightbox(event) {
   lightbox.open(event.target);
 }
 
-galleryList.addEventListener('click', desktopScrollLockOff);
 galleryList.addEventListener('click', openLightbox);
 
 console.log(galleryItems);
